@@ -6,7 +6,16 @@
 
 <script>
   export default {
-    name: "_id"
+    name: "detail",
+    scrollToTop: true,
+    validate ({ params }) {
+      // Must be a number
+      return /^\d+$/.test(params.id)
+    },
+    async asyncData ({ params, query}) {
+      console.log(params, query);
+    }
+
   }
 </script>
 
