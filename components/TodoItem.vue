@@ -1,6 +1,6 @@
 <template>
   <li class="d-flex align-items-center justify-content-between mb-2">
-    <b-form-checkbox v-if="!isEdit" :id="`checkbox-${todo.id}`" name="is_done">
+    <b-form-checkbox switch v-model="todo.isDone" v-if="!isEdit" :id="`checkbox-${todo.id}`" name="is_done">
       {{ todo.name }}
     </b-form-checkbox>
     <div v-else>
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     name: "TodoItem",
     props: {
@@ -40,14 +42,22 @@
       }
     },
     methods: {
+      ...mapActions({
+        deleteTodo: 'Todo/deleteTodo',
+        editTodo: 'Todo/editTodo'
+      }),
+      onChange() {
+        console.log(this.todo.isDone);
+        //this.todo.isDone = false;
+      },
       onToggleEdit() {
         this.isEdit = !this.isEdit;
       },
       onSave() {
         this.onToggleEdit();
-        this.$emit('edit', {
-          newName: this.newName,
-          id: this.todo.id
+        this.editTodo({
+          id: this.todo.id,
+          todo: Object.assign({}, this.todo, { name: this.newName })
         });
         this.newName = this.todo.name;
       },
@@ -57,13 +67,13 @@
       },
       onDelete(todo) {
         if(confirm(`Delete "${todo.name}"?`)) {
-          this.$emit('delete', todo.id);
+          this.deleteTodo(todo.id);
         }
       }
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="sass">
 
 </style>

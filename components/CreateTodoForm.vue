@@ -20,9 +20,7 @@
 </template>
 
 <script>
-  function generateId() {
-    return new Date().getTime();
-  }
+  import { mapActions } from 'vuex';
 
   export default {
     name: "CreateTodoForm",
@@ -32,14 +30,13 @@
       }
     },
     methods: {
+      ...mapActions({
+        add: 'Todo/addTodo'
+      }),
       async onAddTodo() {
         const vResult = await this.$validator.validateAll();
-        if(vResult) {
-          this.$emit('add', {
-            name: this.name,
-            isDone: false,
-            id: generateId()
-          });
+        if (vResult) {
+          this.add(this.name);
           this.name = '';
         }
       },
@@ -57,6 +54,7 @@
     .input-wr
       width: 100%
       margin-right: 10px
+
     .btn
       align-self: flex-start !important
 </style>

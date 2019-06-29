@@ -5,34 +5,29 @@
         v-for="todo of todos"
         :key="todo.id"
         :todo="todo"
-        @edit="onEdit"
-        @delete="onDelete"
       />
     </ul>
   </div>
-
 </template>
 
 <script>
   import TodoItem from "./TodoItem";
+  import { mapGetters } from 'vuex';
 
   export default {
     name: "TodoList",
     components: { TodoItem },
-    props: {
-      todos: {
-        type: Array,
-        required: true
-      }
+    computed: mapGetters({
+      todos: 'Todo/getTodoList'
+    }),
+    beforeCreate() {
     },
-    methods: {
-      onDelete(id) {
-        this.$emit('delete', id);
-      },
-      onEdit(data) {
-        this.$emit('edit', data);
-      }
-    }
+    created() {
+    },
+    mounted() {},
+    updated() {
+    },
+
   }
 </script>
 

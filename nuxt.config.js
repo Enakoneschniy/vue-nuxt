@@ -33,7 +33,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: 'plugins/validate.js', ssr: true }
+    { src: 'plugins/validate.js', ssr: true },
+    { src: 'plugins/localStorage.js', ssr: false }
   ],
 
   /*
