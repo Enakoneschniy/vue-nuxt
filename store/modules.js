@@ -1,5 +1,7 @@
-import todo from './modules/todos'
+import products from './modules/products'
+import cart from './modules/cart'
 
 export default {
-  Todo: todo
+  Products: products,
+  Cart: cart
 }

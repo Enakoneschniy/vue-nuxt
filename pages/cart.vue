@@ -1,17 +1,17 @@
 <template>
   <section class="container">
-    <ProductList/>
+    <BasketList/>
   </section>
 </template>
 
 <script>
-  import ProductList from "../components/ProductList";
 
+  import BasketList from "../components/BasketList";
   export default {
-    components: { ProductList },
+    components: { BasketList },
     head () {
       return {
-        title: 'Catalog',
+        title: 'Cart',
       }
     },
   }

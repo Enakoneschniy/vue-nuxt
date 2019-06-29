@@ -1,21 +1,6 @@
 <template>
   <div>
-    <ul>
-      <li>
-        <nuxt-link to="/" exact>Home</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{name: 'about'}" tag="button" exact>About</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{name: 'contacts'}" tag="button" exact>Contacts</nuxt-link>
-      </li>
-      <li>
-        <nuxt-link :to="{ name: 'users' }" tag="button" exact>User 123</nuxt-link>
-      </li><li>
-        <nuxt-link :to="{ name: 'users-detail', params: { id: '123' } }" tag="button" exact>User 123</nuxt-link>
-      </li>
-    </ul>
+    <MainHeader/>
     <nuxt/>
   </div>
 </template>
@@ -29,3 +14,9 @@
     justify-content: space-around
 
 </style>
+<script>
+  import MainHeader from "../components/MainHeader";
+  export default {
+    components: { MainHeader }
+  }
+</script>
